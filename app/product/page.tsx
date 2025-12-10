@@ -1,3 +1,4 @@
+// "use client"
 import Link from "next/link";
 import AddToCartButton from "@/app/components/AddToCartButton";
 
@@ -10,8 +11,24 @@ async function getProducts() {
     return res.json();
 }
 
+
+
+
 export default async function ProductPage() {
+    // const [products, setProducts] = useState<any>();
+    // const [loading, setLoading] = useState(true);
+    // useEffect(()=>{
+    //     async function fetchData(){
+    //        const res = await fetch("https://fakestoreapi.com/products");
+    //             const data = await res.json();
+    //             setProducts(data);
+    //             setLoading(false);
+    //     }
+    //     fetchData();
+    // },[]
+    // );
     const products = await getProducts();
+
 
     return (
         <main className="min-h-screen bg-gray-50 p-8">

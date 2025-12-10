@@ -1,6 +1,5 @@
 import AddToCartButton from "@/app/components/AddToCartButton";
 
-
 async function getProduct(id: string) {
     const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
         cache: "no-store",
@@ -31,7 +30,7 @@ export default async function ProductPage({params,}: {
                     />
                     <div className="flex-1">
                         <p className="text-green-700 text-2xl font-semibold mb-2">
-                            ${product.price}
+                            {product.price}
                         </p>
                         <p className="text-gray-700 mb-6">{product.description}</p>
                         <AddToCartButton product={product} />
