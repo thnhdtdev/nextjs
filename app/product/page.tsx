@@ -15,9 +15,9 @@ export default async function ProductPage() {
 
     return (
         <main>
-            <h1>Product List</h1>
+            <h1 className="text-6xl text-red-500 font-bold underline" >Product List</h1>
 
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-4 bg-red-500 p-4">
                 {products.map((p: any) => (
                     <div key={p.id} className="border rounded p-4 shadow">
                         <Link href={`/product/${p.id}`}>
