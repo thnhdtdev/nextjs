@@ -1,3 +1,4 @@
+// "use client"
 import Link from "next/link";
 import AddToCartButton from "@/app/components/AddToCartButton";
 
@@ -10,29 +11,50 @@ async function getProducts() {
     return res.json();
 }
 
+
+
+
 export default async function ProductPage() {
+    // const [products, setProducts] = useState<any>();
+    // const [loading, setLoading] = useState(true);
+    // useEffect(()=>{
+    //     async function fetchData(){
+    //        const res = await fetch("https://fakestoreapi.com/products");
+    //             const data = await res.json();
+    //             setProducts(data);
+    //             setLoading(false);
+    //     }
+    //     fetchData();
+    // },[]
+    // );
     const products = await getProducts();
 
-    return (
-        <main>
-            <h1>Product List</h1>
 
-            <div className="grid grid-cols-4 gap-4">
+    return (
+        <main className="min-h-screen bg-gray-50 p-8">
+            <h1 className="text-6xl font-bold underline text-center mb-10">
+                Product List
+            </h1>
+            <div className="grid grid-cols-4 gap-6">
                 {products.map((p: any) => (
-                    <div key={p.id} className="border rounded p-4 shadow">
-                        <Link href={`/product/${p.id}`}>
+                    <div
+                        key={p.id}
+                        className="border rounded-lg bg-white p-4 shadow hover:shadow-lg transition flex flex-col"
+                    >
+                        <Link href={`/product/${p.id}`} className="flex-1 flex flex-col items-center">
                             <img
                                 src={p.image}
                                 alt={p.title}
-                                className="w-full h-40 object-contain mb-2"
+                                className="w-full h-40 object-contain mb-3"
                             />
-                            <h2 className="font-semibold text-base">{p.title}</h2>
-                            <p className="text-green-700 font-bold">
+                            <h2 className="font-semibold text-base text-center line-clamp-2">{p.title}</h2>
+                            <p className="text-green-700 font-bold mt-2">
                                 Price: {p.price}
                             </p>
                         </Link>
-
-                        <AddToCartButton product={p} />
+                        <div className="mt-4">
+                            <AddToCartButton product={p} />
+                        </div>
                     </div>
                 ))}
             </div>
