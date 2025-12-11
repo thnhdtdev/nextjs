@@ -1,10 +1,17 @@
 "use client";
 
-import { useSelector } from "react-redux";
 import { Trash2 } from "lucide-react";
+import { removeFromCart } from "@/store/cartSlice";
+
+import { useDispatch, useSelector } from "react-redux";
 
 export default function CartList() {
+	const dispatch = useDispatch();
 	const items = useSelector((state) => state.cart.items);
+
+	const handleRemove = (id) => {
+		dispatch(removeFromCart(id));
+	};
 
 	if (!items.length) return <p>Giỏ hàng của bạn đang trống.</p>;
 
@@ -12,7 +19,7 @@ export default function CartList() {
 		<div className="max-w-7xl bg-gray-50 flex flex-col gap-4 mx-auto p-8">
 			<div className="bg-white rounded-xl shadow-lg p-10">
 				<div className="font-bold text-4xl mb-6">Shopping cart</div>
-				<div className="grid grid-cols-6  mb-4 capitalize font-bold">
+				<div className="grid grid-cols-6 mb-4 capitalize font-bold">
 					<div>Image</div>
 					<div className="col-span-2">title</div>
 					<div>quanlity</div>
@@ -20,7 +27,10 @@ export default function CartList() {
 					<div></div>
 				</div>
 				{items.map((item) => (
-					<div className="grid grid-cols-6 items-center gap-4 rounded-xl border px-4 py-3 mb-4 bg-white shadow">
+					<div
+						key={item.id}
+						className="grid grid-cols-6 items-center gap-4 rounded-xl border px-4 py-3 mb-4 bg-white shadow"
+					>
 						<img
 							src={item.image}
 							width={64}
@@ -40,8 +50,7 @@ export default function CartList() {
 						<div>{item.quantity * item.price}</div>
 						<button
 							className="text-gray-400 hover:text-red-500 ml-3"
-							onClick={() => onRemove(item.id)}
-							title="Remove"
+							onClick={() => handleRemove(item.id)}
 						>
 							<Trash2 size={20} />
 						</button>
