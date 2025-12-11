@@ -6,10 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import AddToCartButton from "@/components/addToCartButton";
 
 async function getProducts() {
-	const res = await fetch("https://fakestoreapi.com/products", {
-		cache: "no-store",
-		method: "GET"
-	});
+	const res = await fetch("https://fakestoreapi.com/products");
 	if (!res.ok) throw new Error("Failed to fetch products");
 	return res.json();
 }
