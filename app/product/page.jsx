@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
-import AddToCartButton from "@/components/addToCartButton";
 import { Star } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import AddToCartButton from "@/components/addToCartButton";
 
 async function getProducts() {
 	const res = await fetch("https://fakestoreapi.com/products", {
@@ -11,14 +14,19 @@ async function getProducts() {
 	return res.json();
 }
 
-export default async function ProductPage() {
-	const products = await getProducts();
+export default function ProductPage() {
+	const { data, isLoading } = useQuery({
+		queryKey: ["products"],
+		queryFn: getProducts
+	});
+
+	if (isLoading) return <p>Loading...</p>;
 
 	return (
 		<main className="min-h-screen bg-gray-50 p-8">
 			<h1 className="text-6xl font-bold underline text-center mb-10">Product List</h1>
 			<div className="grid grid-cols-6 gap-6">
-				{products.map((p) => (
+				{data?.map((p) => (
 					<div
 						key={p.id}
 						className="border rounded-lg bg-white p-4 shadow hover:shadow-lg transition flex flex-col"
