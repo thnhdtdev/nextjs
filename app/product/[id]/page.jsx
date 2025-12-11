@@ -1,4 +1,7 @@
-import AddToCartButton from "../../../components/addToCartButton";
+import { toast } from "sonner"
+
+import AddToCartButton from "@/components/addToCartButton";
+
 
 async function getProduct(id) {
     const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
@@ -32,6 +35,7 @@ export default async function ProductPage({params}){
                             {product.price}
                         </p>
                         <p className="text-gray-700 mb-6">{product.description}</p>
+
                         <AddToCartButton product={product} />
                     </div>
                 </div>

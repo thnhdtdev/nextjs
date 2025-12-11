@@ -1,7 +1,10 @@
 "use client";
 
+import { toast } from "sonner";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store/cartSlice";
+
+import { addToCart } from "@/store/cartSlice";
+import { Button } from "@/src/components/ui/button";
 
 export default function AddToCartButton({ product }) {
     const dispatch = useDispatch();
@@ -15,15 +18,12 @@ export default function AddToCartButton({ product }) {
                 image: product.image,
             })
         );
-        alert("Đã thêm vào giỏ hàng");
+        toast("Đã thêm vào giỏ hàng");
     };
 
     return (
-        <button
-            onClick={handleAddToCart}
-            className="bg-green-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition w-full"
-        >
-            Add to Cart
-        </button>
+        <Button variant="outline" onClick={handleAddToCart}>
+            Thêm vào giỏ hàng
+        </Button>
     );
 }

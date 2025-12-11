@@ -1,5 +1,5 @@
 import Link from "next/link";
-import AddToCartButton from "../../components/addToCartButton";
+import AddToCartButton from "@/components/addToCartButton";
 
 async function getProducts() {
     const res = await fetch("https://fakestoreapi.com/products", {
