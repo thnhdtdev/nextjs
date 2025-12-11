@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { DialogDelete } from "@/components/dialogDelete";
 
 export default function CartList() {
 	const dispatch = useDispatch();
@@ -57,14 +58,8 @@ export default function CartList() {
 							<span className="w-6 text-center">{item.quantity}</span>
 						</div>
 
-						<div>{item.quantity * item.price}</div>
-						<Button
-							variant="link"
-							className="text-gray-400 hover:text-red-500 ml-3"
-							onClick={() => handleRemove(item.id)}
-						>
-							<Trash2 size={20} />
-						</Button>
+						<div className="font-bold">${item.quantity * item.price}</div>
+						<DialogDelete onClick={() => handleRemove(item.id)} />
 					</div>
 				))}
 			</div>
