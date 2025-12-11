@@ -1,8 +1,9 @@
 "use client"
 
-import Link from "next/link";
-import {Button} from "@/src/components/ui/button";
 import {toast} from "sonner";
+import Link from "next/link";
+
+import {Button} from "@/components/ui/button";
 
 export default function HomePage() {
     return (
@@ -21,9 +22,6 @@ export default function HomePage() {
                         Go to Cart Page
                     </button>
                 </Link>
-
-       <Button variant="destructive">Destructive</Button>
-
 
                 <Button
                     variant="destructive"
