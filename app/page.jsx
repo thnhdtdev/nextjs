@@ -1,9 +1,6 @@
 "use client";
 
-import { toast } from "sonner";
 import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
 	return (
@@ -18,6 +15,11 @@ export default function HomePage() {
 				<Link href="/cart">
 					<button className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded transition">
 						Go to Cart Page
+					</button>
+				</Link>
+				<Link href="/pokemon">
+					<button className="bg-amber-600 hover:bg-amber-700 text-white px-5 py-2 rounded transition">
+						Go to Pokemon
 					</button>
 				</Link>
 			</div>
