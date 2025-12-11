@@ -1,6 +1,6 @@
-import AddToCartButton from "@/app/components/AddToCartButton";
+import AddToCartButton from "../../../components/addToCartButton";
 
-async function getProduct(id: string) {
+async function getProduct(id) {
     const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
         cache: "no-store",
         method: "GET"
@@ -10,9 +10,8 @@ async function getProduct(id: string) {
     return res.json();
 }
 
-export default async function ProductPage({params,}: {
-    params: Promise<{ id: string }>
-}) {
+export default async function ProductPage({params}){
+
     const { id } = await params
     const product = await getProduct(id);
 

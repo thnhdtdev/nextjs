@@ -1,10 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import cartReducer from './cartSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import cartReducer from "./cartSlice";
 
 const persistConfig = {
-    key: 'cart',
+    key: "cart",
     storage,
 };
 
@@ -20,5 +20,4 @@ export const store = configureStore({
         }),
 });
 
-export type RootState = ReturnType<typeof store.getState>;
 export const persistor = persistStore(store);

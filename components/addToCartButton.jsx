@@ -1,16 +1,9 @@
 "use client";
 
 import { useDispatch } from "react-redux";
-import { addToCart } from "@/app/store/cartSlice";
+import { addToCart } from "../store/cartSlice";
 
-type Product = {
-    id: string;
-    title: string;
-    price: number;
-    image: string;
-};
-
-export default function AddToCartButton({ product }: { product: Product }) {
+export default function AddToCartButton({ product }) {
     const dispatch = useDispatch();
 
     const handleAddToCart = () => {
@@ -26,7 +19,10 @@ export default function AddToCartButton({ product }: { product: Product }) {
     };
 
     return (
-        <button onClick={handleAddToCart} className="bg-green-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition w-full">
+        <button
+            onClick={handleAddToCart}
+            className="bg-green-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition w-full"
+        >
             Add to Cart
         </button>
     );

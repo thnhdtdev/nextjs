@@ -1,6 +1,5 @@
-// "use client"
 import Link from "next/link";
-import AddToCartButton from "@/app/components/AddToCartButton";
+import AddToCartButton from "../../components/addToCartButton";
 
 async function getProducts() {
     const res = await fetch("https://fakestoreapi.com/products", {
@@ -11,24 +10,8 @@ async function getProducts() {
     return res.json();
 }
 
-
-
-
 export default async function ProductPage() {
-    // const [products, setProducts] = useState<any>();
-    // const [loading, setLoading] = useState(true);
-    // useEffect(()=>{
-    //     async function fetchData(){
-    //        const res = await fetch("https://fakestoreapi.com/products");
-    //             const data = await res.json();
-    //             setProducts(data);
-    //             setLoading(false);
-    //     }
-    //     fetchData();
-    // },[]
-    // );
     const products = await getProducts();
-
 
     return (
         <main className="min-h-screen bg-gray-50 p-8">
@@ -36,7 +19,7 @@ export default async function ProductPage() {
                 Product List
             </h1>
             <div className="grid grid-cols-4 gap-6">
-                {products.map((p: any) => (
+                {products.map((p) => (
                     <div
                         key={p.id}
                         className="border rounded-lg bg-white p-4 shadow hover:shadow-lg transition flex flex-col"
