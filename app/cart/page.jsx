@@ -1,13 +1,11 @@
 "use client";
 
-import { Trash2 } from "lucide-react";
-import { removeFromCart } from "@/store/cartSlice";
-
-import { useDispatch, useSelector } from "react-redux";
-import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { useDispatch, useSelector } from "react-redux";
+
+import { removeFromCart } from "@/store/cartSlice";
 import { DialogDelete } from "@/components/dialogDelete";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function CartList() {
 	const dispatch = useDispatch();
