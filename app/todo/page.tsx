@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { toast } from "sonner";
+import { Trash2 } from "lucide-react";
+import { DialogDelete } from "@/components/dialogDelete";
 
 type Priority = "low" | "medium" | "high";
 type FilterStatus = "all" | "active" | "completed";
@@ -125,6 +127,12 @@ export default function TodoPage() {
 			return todo;
 		});
 		setTodos(updateTodos);
+	};
+
+	const handleDeleteTodo = (id: number) => {
+		const newTodos = todos.filter((todo) => todo.id !== id);
+		setTodos(newTodos);
+		toast.success("Deleted successfully");
 	};
 
 	const processedTodos = todos
@@ -268,6 +276,8 @@ export default function TodoPage() {
 										>
 											{todo.priority}
 										</span>
+
+										<DialogDelete onClick={() => handleDeleteTodo(todo.id)} />
 									</div>
 
 									<p className="text-gray-600 text-sm mt-1">{todo.note}</p>
