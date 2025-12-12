@@ -51,7 +51,7 @@ export default function CartSheet() {
 					<SheetDescription>Miễn phí vận chuyển cho đơn từ 500k</SheetDescription>
 				</SheetHeader>
 
-				{items.map((item) => (
+				{items?.map((item) => (
 					<div className="flex items-start gap-4">
 						<div className="h-20 w-20 bg-gray-100 rounded-md flex items-center justify-center text-xs text-gray-500 shrink-0">
 							<img

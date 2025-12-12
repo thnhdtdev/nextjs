@@ -21,6 +21,9 @@ export default function CartList() {
 				<Link href="/cart" className="hover:text-blue-600">
 					Cart
 				</Link>
+				<Link href="/todo" className="hover:text-blue-600">
+					todoapp
+				</Link>
 				<CartSheet />
 			</nav>
 		</header>
