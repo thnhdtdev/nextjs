@@ -254,31 +254,39 @@ export default function TodoPage() {
 									className="mt-1.5 w-5 h-5 cursor-pointer accent-blue-600"
 								/>
 
-								<div className="flex-1">
-									<div className="flex justify-between items-start">
-										<h3
-											className={`font-bold text-lg ${todo.isCompleted ? "line-through text-gray-500" : "text-gray-800"}`}
+								<div className="flex-1 min-w-0">
+									<div className="flex justify-between items-start gap-2">
+										<div
+											className={`font-bold text-lg min-w-0 break-all ${
+												todo.isCompleted
+													? "line-through text-gray-500"
+													: "text-gray-800"
+											}`}
 										>
 											{todo.title}
-										</h3>
+										</div>
+										<div className="flex items-start gap-2 shrink-0">
+											<span
+												className={`px-2 py-1 text-xs rounded font-bold uppercase whitespace-nowrap
+                            ${
+								todo.priority === "high"
+									? "bg-red-100 text-red-600"
+									: todo.priority === "medium"
+										? "bg-yellow-100 text-yellow-600"
+										: "bg-green-100 text-green-600"
+							}`}
+											>
+												{todo.priority}
+											</span>
 
-										<span
-											className={`px-2 py-1 text-xs rounded font-bold uppercase 
-                                ${
-									todo.priority === "high"
-										? "bg-red-100 text-red-600"
-										: todo.priority === "medium"
-											? "bg-yellow-100 text-yellow-600"
-											: "bg-green-100 text-green-600"
-								}`}
-										>
-											{todo.priority}
-										</span>
-
-										<DialogDelete onClick={() => handleDeleteTodo(todo.id)} />
+											<DialogDelete
+												onClick={() => handleDeleteTodo(todo.id)}
+											/>
+										</div>
 									</div>
-
-									<p className="text-gray-600 text-sm mt-1">{todo.note}</p>
+									<p className="text-gray-600 text-sm mt-1 break-words">
+										{todo.note}
+									</p>
 									<div className="text-xs text-gray-400 mt-2">
 										{todo.dueDate
 											? `Deadline: ${new Date(todo.dueDate).toLocaleString()}`
