@@ -1,10 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
 import { toast } from "sonner";
-import { Trash2 } from "lucide-react";
+import React, { useState } from "react";
 import { DialogDelete } from "@/components/dialogDelete";
-
 type Priority = "low" | "medium" | "high";
 type FilterStatus = "all" | "active" | "completed";
 type SortOption = "created" | "dueDate" | "priority";
