@@ -1,5 +1,11 @@
+import RegisterForm from "@/app/(auth)/register/register-form";
+
 const Register = () => {
-	return <div>Register</div>;
+	return (
+		<div>
+			<RegisterForm />
+		</div>
+	);
 };
 
 export default Register;
