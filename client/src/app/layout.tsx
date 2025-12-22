@@ -2,6 +2,8 @@ import React from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import Header from "@/components/layouts/header";
+import Footer from "@/components/layouts/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import "@/app/globals.css";
@@ -28,14 +30,18 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+			<body
+				className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
+			>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
 					enableSystem
 					disableTransitionOnChange
 				>
-					{children}
+					<Header />
+					<main className="flex-1">{children}</main>
+					<Footer />
 				</ThemeProvider>
 			</body>
 		</html>
