@@ -54,7 +54,7 @@ const RegisterForm = () => {
 							<FormItem>
 								<FormLabel>Name</FormLabel>
 								<FormControl>
-									<Input placeholder="name" {...field} />
+									<Input placeholder="Name" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -67,7 +67,7 @@ const RegisterForm = () => {
 							<FormItem>
 								<FormLabel>Password</FormLabel>
 								<FormControl>
-									<Input placeholder="Password" {...field} />
+									<Input type="password" placeholder="Password" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
