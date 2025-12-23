@@ -2,6 +2,8 @@
 
 import { useForm } from "react-hook-form";
 
+import envConfig from "@/config";
+import API from "@/const/api-routes";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,14 +28,21 @@ const RegisterForm = () => {
 		}
 	});
 
-	const onSubmit = (data: RegisterSchemaType) => {
-		console.log(data);
-	};
+	async function onSubmit(data: RegisterSchemaType) {
+		const result = await fetch(`${envConfig.NEXT_PUBLIC_API_URL}${API.REGISTER}`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(data)
+		}).then((res) => res.json());
+		console.error(result.errors[0].message);
+	}
 
 	return (
 		<div>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-3xl">
 					<FormField
 						control={form.control}
 						name="email"
@@ -90,7 +99,9 @@ const RegisterForm = () => {
 							</FormItem>
 						)}
 					/>
-					<Button type="submit">Submit</Button>
+					<Button type="submit" className="w-full">
+						Submit
+					</Button>
 				</form>
 			</Form>{" "}
 		</div>
