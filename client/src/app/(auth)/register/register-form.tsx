@@ -44,14 +44,14 @@ const RegisterForm = () => {
 			if (!response.ok) {
 				if (response.status === 422) {
 					const detailError = result.errors?.[0]?.message;
-					toast.error(detailError);
-					// throw new Error(detailError || "Dữ liệu không hợp lệ");
+					toast.error(detailError || "Dữ liệu không hợp lệ");
+					return;
 				}
-
-				// throw new Error(result.message || "Đăng ký thất bại");
+				toast.error(result.message || "Đăng ký thất bại");
+				return;
 			}
 
-			toast.info("Đăng ký thành công!");
+			toast.success("Đăng ký thành công!");
 			console.log(result);
 		} catch (error: any) {
 			toast.error(error.message);
