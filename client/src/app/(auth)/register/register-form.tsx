@@ -1,7 +1,10 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
+import envConfig from "@/config";
+import API from "@/const/api-routes";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,14 +29,40 @@ const RegisterForm = () => {
 		}
 	});
 
-	const onSubmit = (data: RegisterSchemaType) => {
-		console.log(data);
-	};
+	async function onSubmit(data: RegisterSchemaType) {
+		try {
+			const response = await fetch(`${envConfig.NEXT_PUBLIC_API_URL}${API.REGISTER}`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(data)
+			});
+
+			const result = await response.json();
+
+			if (!response.ok) {
+				if (response.status === 422) {
+					const detailError = result.errors?.[0]?.message;
+					toast.error(detailError || "Dữ liệu không hợp lệ");
+					return;
+				}
+				toast.error(result.message || "Đăng ký thất bại");
+				return;
+			}
+
+			toast.success("Đăng ký thành công!");
+			console.log(result);
+		} catch (error: any) {
+			toast.error(error.message);
+			console.error(error);
+		}
+	}
 
 	return (
 		<div>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full max-w-3xl">
 					<FormField
 						control={form.control}
 						name="email"
@@ -90,7 +119,9 @@ const RegisterForm = () => {
 							</FormItem>
 						)}
 					/>
-					<Button type="submit">Submit</Button>
+					<Button type="submit" className="w-full">
+						Submit
+					</Button>
 				</form>
 			</Form>{" "}
 		</div>
